@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://unpkg.com/d3@5"></script>
+<script src="https://unpkg.com/d3-gridding@0.1"></script>
+<script>
+
+var width = 400,
+    height = 300;
+
+var gridding = d3.gridding()
+  .size([width, height])
+  .mode("grid");
+
+var data = d3.range(250);
+
+var griddingData = gridding(data);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.selectAll(".square")
+    .data(griddingData)
+  .enter().append("rect")
+    .style("fill", "none")
+    .style("stroke", "black")
+    .attr("width", function(d) { return d.width; })
+    .attr("height", function(d) { return d.height; })
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    
+  </script>
+</body>

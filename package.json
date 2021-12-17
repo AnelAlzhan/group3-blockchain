@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "d3-gridding": "^0.2.0"
+  }
+}
