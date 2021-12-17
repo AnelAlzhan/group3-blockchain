@@ -1,5 +1,6 @@
 let screenshots = [];
 let scrimgs = [];
+let scrNumber = 0;
 
 function preload() {
   for (let i = 0; i < 18; i++) {
@@ -31,11 +32,7 @@ function setup() {
   //     }
   //   }
   // }
-  for (let i = 0; i < screenshots.length; i++) {
-    let a = screenshots[i];
-    let b = new Screenshot(i * 20, i * 20, a);
-    scrimgs.push(b);
-  }
+
   // const container = select("#sketch-holder");
   // for (let i = 0; i < screenshots.length; i++) {
   //   container.createImg(screenshots[i], "DDD").position(i * 10, i * 10);
@@ -44,11 +41,11 @@ function setup() {
 
 function draw() {
   background(0);
-
-  for (let i = 0; i < scrimgs.length; i++) {
-    scrimgs[i].move();
-    scrimgs[i].show();
-  }
+  scrimgs[i].clicked();
+  // for (let i = 0; i < scrimgs.length; i++) {
+  //   // scrimgs[i].move();
+  //   scrimgs[i].show();
+  // }
 }
 
 class Screenshot {
@@ -89,10 +86,24 @@ class Screenshot {
     // fill(this.brightness, 125);
     // ellipse(this.x, this.y, this.r * 2);
   }
-  changeGray() {
-    d = d + 10;
-    if (d > 100) {
-      d = 0;
-    }
+}
+// let i = 0;
+function mousePressed() {
+  // for (let i = 0; i < screenshots.length; i++) {
+  // i = i++;
+  // let a = screenshots[i];
+  // let x = random(500);
+  // let y = random(500);
+  // let s = new Screenshot(x, y, a);
+  // scrimgs.push(s);
+  // console.log(i);
+  let a = random(screenshots);
+  let randomx = random(500);
+  let randomy = random(500);
+  let b = new Screenshot(randomx, randomy, a);
+  scrimgs.push(b);
+
+  for (let i = 0; i < scrimgs.length; i++) {
+    scrimgs[i].show();
   }
 }
