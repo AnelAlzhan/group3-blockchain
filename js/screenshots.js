@@ -1,6 +1,7 @@
 let screenshots = [];
 let scrimgs = [];
 let scrNumber = 0;
+var clicks = 0;
 
 function preload() {
   for (let i = 0; i < 18; i++) {
@@ -11,7 +12,19 @@ function preload() {
   console.log(screenshots.length + "items");
 }
 
-let container;
+function mousePressed() {
+  clicks++;
+  console.log(clicks);
+  let a = screenshots[clicks];
+  let randomx = random(500);
+  let randomy = random(500);
+  let b = new Screenshot(randomx, randomy, a);
+  scrimgs.push(b);
+
+  for (let i = 0; i < scrimgs.length; i++) {
+    scrimgs[i].show();
+  }
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -23,29 +36,30 @@ function setup() {
   //   }
   // for (let x = 0; x < 1200; x = x + 100) {
   //   for (let y = 0; y < 1200; y = y + 100) {
-  //     for (let i = 0; i < screenshots.length; i++) {
-  //       let community = screenshots[i];
-  //       let x = random(windowWidth);
-  //       let y = random(windowHeight);
-  //       let b = new Screenshot(x, y, community);
-  //       scrimgs.push(b);
-  //     }
+
+  // for (let i = 0; i < screenshots.length; i++) {
+  //   if (mouseIsPressed) {
+  //     let community = random(screenshots);
+  //     let x = random(windowWidth);
+  //     let y = random(windowHeight);
+  //     let b = new Screenshot(x, y, community);
+  //     scrimgs.push(b);
   //   }
   // }
 
-  // const container = select("#sketch-holder");
-  // for (let i = 0; i < screenshots.length; i++) {
-  //   container.createImg(screenshots[i], "DDD").position(i * 10, i * 10);
+  //   }
   // }
+
+  // screenshots.forEach(myFunction)
 }
 
 function draw() {
   background(0);
-  scrimgs[i].clicked();
-  // for (let i = 0; i < scrimgs.length; i++) {
-  //   // scrimgs[i].move();
-  //   scrimgs[i].show();
-  // }
+  // scrimgs[i].clicked();
+  for (let i = 0; i < scrimgs.length; i++) {
+    //   // scrimgs[i].move();
+    scrimgs[i].show();
+  }
 }
 
 class Screenshot {
@@ -88,22 +102,21 @@ class Screenshot {
   }
 }
 // let i = 0;
-function mousePressed() {
-  // for (let i = 0; i < screenshots.length; i++) {
-  // i = i++;
-  // let a = screenshots[i];
-  // let x = random(500);
-  // let y = random(500);
-  // let s = new Screenshot(x, y, a);
-  // scrimgs.push(s);
-  // console.log(i);
-  let a = random(screenshots);
-  let randomx = random(500);
-  let randomy = random(500);
-  let b = new Screenshot(randomx, randomy, a);
-  scrimgs.push(b);
 
-  for (let i = 0; i < scrimgs.length; i++) {
-    scrimgs[i].show();
-  }
+// function mousePressed() {
+//   // for (let i = 0; i < screenshots.length; i++) {
+//   // i = i++;
+//   // let a = screenshots[i];
+//   // let x = random(500);
+//   // let y = random(500);
+//   // let s = new Screenshot(x, y, a);
+//   // scrimgs.push(s);
+//   // console.log(i);
+
+// }
+
+// scrimgs.forEach(myFunction);
+
+function myFunction() {
+  console.log("ehi");
 }
