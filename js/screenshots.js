@@ -2,6 +2,7 @@ let screenshots = [];
 let scrimgs = [];
 let scrNumber = 0;
 var clicks = 0;
+let messages = [];
 
 function preload() {
   for (let i = 0; i < 18; i++) {
@@ -13,11 +14,19 @@ function preload() {
 }
 
 function mousePressed() {
+  // imageMode(CENTER);
+  if (clicks > screenshots.length) {
+    let message = new Message(100, 100);
+    messages.push(message);
+    messages[0].show();
+    console.log("message" + messages.length);
+  }
+
   clicks++;
   console.log(clicks);
   let a = screenshots[clicks];
-  let randomx = random(500);
-  let randomy = random(500);
+  let randomx = random(75);
+  let randomy = random(75);
   let b = new Screenshot(randomx, randomy, a);
   scrimgs.push(b);
 
@@ -26,40 +35,46 @@ function mousePressed() {
   }
 }
 
+// var canvasDiv = document.getElementById("contacts");
+// var width = canvasDiv.offsetWidth;
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  // imageMode(CENTER);
 
-  fill(255);
+  let renderer = createCanvas(windowWidth, windowHeight / 1.2);
+  renderer.parent("sketch-holder");
+  background("red");
+  // let width = round(float(css.marginLeft) + float(css.marginRight));
+  // var canvas = createCanvas(width, 400);
+  // canvas.parent("sketch-holder");
+  // fitToContainer(canvas);
 
-  //   for (let i = 0; i < screenshots.length; i++) {
-  //     container.createImg(screenshots[i]).position(i * 10, i * 10);
-  //   }
-  // for (let x = 0; x < 1200; x = x + 100) {
-  //   for (let y = 0; y < 1200; y = y + 100) {
-
-  // for (let i = 0; i < screenshots.length; i++) {
-  //   if (mouseIsPressed) {
-  //     let community = random(screenshots);
-  //     let x = random(windowWidth);
-  //     let y = random(windowHeight);
-  //     let b = new Screenshot(x, y, community);
-  //     scrimgs.push(b);
-  //   }
+  // function fitToContainer(canvas) {
+  //   canvas.style.width = "100%";
+  //   canvas.style.height = "100%";
+  //   canvas.width = canvas.offsetWidth;
+  //   canvas.height = canvas.offsetHeight;
   // }
 
-  //   }
-  // }
-
-  // screenshots.forEach(myFunction)
+  // fill("red");
 }
 
 function draw() {
-  background(0);
+  background("grey");
   // scrimgs[i].clicked();
+  messages[0].show();
+
   for (let i = 0; i < scrimgs.length; i++) {
     //   // scrimgs[i].move();
     scrimgs[i].show();
   }
+  if (clicks > screenshots.length) {
+    let message = new Message(100, 100);
+    messages.push(message);
+    messages[0].show();
+    console.log("message" + messages.length);
+  }
+  messages[0].show();
 }
 
 class Screenshot {
@@ -92,13 +107,24 @@ class Screenshot {
       this.screenshot,
       this.x,
       this.y,
-      this.screenshot.width / 5,
-      this.screenshot.height / 5
+      this.screenshot.width / 2,
+      this.screenshot.height / 2
     );
     // stroke(255);
     // strokeWeight(4);
     // fill(this.brightness, 125);
     // ellipse(this.x, this.y, this.r * 2);
+  }
+}
+
+class Message {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  show() {
+    fill("red");
+    ellipse(this.x, this.y, 200, 200);
   }
 }
 // let i = 0;
