@@ -5,7 +5,7 @@ var clicks = 0;
 let messages = [];
 
 function preload() {
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < 25; i++) {
     screenshots[i] = loadImage(
       "./assets/screenshots/Screenshot (" + i + ").png"
     );
@@ -15,23 +15,29 @@ function preload() {
 
 function mousePressed() {
   // imageMode(CENTER);
-  if (clicks > screenshots.length) {
-    let message = new Message(100, 100);
-    messages.push(message);
-    messages[0].show();
-    console.log("message" + messages.length);
-  }
-
+  // if (clicks > screenshots.length) {
+  //   let message = new Message(100, 100);
+  //   messages.push(message);
+  //   messages[0].show();
+  //   console.log("message" + messages.length);
+  // }
   clicks++;
   console.log(clicks);
-  let a = screenshots[clicks];
   let randomx = random(75);
   let randomy = random(75);
-  let b = new Screenshot(randomx, randomy, a);
-  scrimgs.push(b);
+  if (clicks >= screenshots.length) {
+    let f = screenshots[24];
+    let final = new Screenshot(randomx, randomy, f);
+    scrimgs.push(final);
+  } else {
+    let a = screenshots[clicks];
 
-  for (let i = 0; i < scrimgs.length; i++) {
-    scrimgs[i].show();
+    let b = new Screenshot(randomx, randomy, a);
+    scrimgs.push(b);
+
+    for (let i = 0; i < scrimgs.length; i++) {
+      scrimgs[i].show();
+    }
   }
 }
 
@@ -62,19 +68,19 @@ function setup() {
 function draw() {
   background("grey");
   // scrimgs[i].clicked();
-  messages[0].show();
+  // messages[0].show();
 
   for (let i = 0; i < scrimgs.length; i++) {
     //   // scrimgs[i].move();
     scrimgs[i].show();
   }
-  if (clicks > screenshots.length) {
-    let message = new Message(100, 100);
-    messages.push(message);
-    messages[0].show();
-    console.log("message" + messages.length);
-  }
-  messages[0].show();
+  // if (clicks > screenshots.length) {
+  //   let message = new Message(100, 100);
+  //   messages.push(message);
+  //   messages[0].show();
+  //   console.log("message" + messages.length);
+  // }
+  // messages[0].show();
 }
 
 class Screenshot {
@@ -84,17 +90,17 @@ class Screenshot {
     this.screenshot = img;
   }
 
-  clicked(px, py) {
-    // let d = dist(px, py, this.x, this.y);
-    if (
-      px > this.x &&
-      px < this.x + this.screenshot.width / 5 &&
-      py > this.y &&
-      py < this.y + this.screenshot.height / 5
-    ) {
-      this.screenshot = random(screenshots);
-    }
-  }
+  // clicked(px, py) {
+  //   // let d = dist(px, py, this.x, this.y);
+  //   if (
+  //     px > this.x &&
+  //     px < this.x + this.screenshot.width / 5 &&
+  //     py > this.y &&
+  //     py < this.y + this.screenshot.height / 5
+  //   ) {
+  //     this.screenshot = random(screenshots);
+  //   }
+  // }
 
   move() {
     frameRate(4);
