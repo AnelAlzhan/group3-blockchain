@@ -3,6 +3,7 @@ let scrimgs = [];
 let scrNumber = 0;
 var clicks = 0;
 let messages = [];
+let renderer;
 
 function preload() {
   for (let i = 0; i < 25; i++) {
@@ -25,31 +26,34 @@ function mousePressed() {
   console.log(clicks);
   let randomx = random(75);
   let randomy = random(75);
+  let randomf = random(windowWidth / 4, (windowWidth / 4) * 3);
+  let randomfy = random(150);
   if (clicks >= screenshots.length) {
     let f = screenshots[24];
     let final = new Screenshot(randomx, randomy, f);
+    console.log(final.x, final.y);
     scrimgs.push(final);
   } else {
     let a = screenshots[clicks];
 
     let b = new Screenshot(randomx, randomy, a);
     scrimgs.push(b);
-
-    for (let i = 0; i < scrimgs.length; i++) {
-      scrimgs[i].show();
-    }
+  }
+  for (let i = 0; i < scrimgs.length; i++) {
+    scrimgs[i].show();
   }
 }
 
 // var canvasDiv = document.getElementById("contacts");
 // var width = canvasDiv.offsetWidth;
-
 function setup() {
   // imageMode(CENTER);
 
   let renderer = createCanvas(windowWidth, windowHeight / 1.2);
   renderer.parent("sketch-holder");
   background("red");
+  console.log(renderer.width);
+
   // let width = round(float(css.marginLeft) + float(css.marginRight));
   // var canvas = createCanvas(width, 400);
   // canvas.parent("sketch-holder");
@@ -66,9 +70,14 @@ function setup() {
 }
 
 function draw() {
+  let renderer = createCanvas(windowWidth, windowHeight / 1.2);
+  renderer.parent("sketch-holder");
+
   background("grey");
   // scrimgs[i].clicked();
   // messages[0].show();
+  translate(renderer.width / 2, renderer.height / 2.5);
+  imageMode(CENTER);
 
   for (let i = 0; i < scrimgs.length; i++) {
     //   // scrimgs[i].move();
